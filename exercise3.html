@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hide function in JavaScript</title>
+	<style type="text/css">
+		fieldset{
+			border: 1px solid black;
+		}
+
+		#floor,#wall{
+			display: none;
+			width: 30%;
+			padding: 10px;
+			border: 1px solid black;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		
+		function myFunction(){
+
+			//Floor and Wall Checkbox
+			 let x = document.getElementById("myCheck");
+			 let y = document.getElementById("myCheck1");
+
+			 //Floor and WallOutput 
+			 let Output1 = document.getElementById("floor");
+			 let Output2 = document.getElementById("wall");
+
+			 // If the checkbox is checked, display the output text
+  			if (x.checked == true){
+   			 		Output1.style.display = "block";
+  			} else {
+  	 			 	Output1.style.display = "none";
+  			}
+  			if(y.checked == true){
+   			 		Output2.style.display = "block";
+  			} else {
+  	 			 	Output2.style.display = "none";
+  			}
+		}
+
+		//Calculate for floor.
+		function calcFloor(){
+			f1 = document.mainForm.textBox1.value;
+			f2 = document.mainForm.textBox2.value;
+			f3 = document.mainForm.t1Length.value ** 2;
+			rArea = f1 * f2;
+			result = rArea/f3; 
+			tile   = result * 0.05;
+			final   = tile + result;
+			alert("The area of room is "+ rArea + "sqft.");
+		alert("The area of one tile is "+ f3 +"sqft.");
+			alert('The number of tiles for floor is '+ Math.round(final));
+		}
+
+		//Calculate for wall.
+		function calcWall()
+		{
+			f1 = document.mainForm.textBox1.value * 12;//change to inches
+			f2 = document.mainForm.textBox2.value * 12;//change to inches
+			tw = document.mainForm.t2Width.value;//by inches
+		tl = document.mainForm.t2Height.value;//by inches 
+		
+		rArea = f1 * f2;//floor area by inches
+		tArea = tw * tl;//tile area (inches)
+		result = rArea/tArea; 
+			alert('The area of room is '+ rArea + 'inches.');
+		alert('The area of one tile is '+ tArea +'inches.');
+			alert('The number of tiles for floor is '+ Math.round(result));
+		}
+	</script>
+</head>
+<body>
+<form name="mainForm">
+	
+		<fieldset>
+			<legend>Room's Width& Length Area</legend>
+			Width:  <input type="text" name="textBox1"></br>
+			Height: <input type="text" name="textBox2">
+		</fieldset>	
+
+		<input type="radio" id="myCheck" onclick="myFunction()">Floor
+		<input type="radio" id="myCheck1" onclick="myFunction()">Wall
+		<p id="floor">
+			Width&Height: <input type="text" name="t1Length"><br>
+			<input type="button" name="" value="Calculate" 
+			onclick="calcFloor()">
+		</p>
+		<p id="wall">
+			Width: <input type="text" name="t2Width"><br>
+			Height: <input type="text" name="t2Height"><br>
+			<input type="button" name="" value="Calculate" 
+			onclick="calcWall()">
+		</p>	
+</form>
+</body>
+</html>
